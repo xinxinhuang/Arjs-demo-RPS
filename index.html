@@ -1,0 +1,68 @@
+<!doctype HTML>
+<html>
+<head>
+    <script src="js/aframe.min.js"></script>
+    <script src="js/aframe-ar.js"></script>
+    <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.139.2/examples/js/libs/draco/draco_decoder.js"></script>
+    <script src="js/game-logic.js"></script>
+</head>
+<body style="margin: 0px; overflow: hidden;">
+
+<a-scene embedded vr-mode-ui="enabled: false;" 
+         arjs="debugUIEnabled: true;" 
+         gesture-detector
+         renderer="antialias: true; colorManagement: true; precision: low; powerPreference: high-performance;"
+         gltf-model="dracoDecoderPath: https://cdn.jsdelivr.net/npm/three@0.139.2/examples/js/libs/draco/;"
+         rps-game>
+
+    <a-assets>
+        <a-asset-item id="paper" src="assets/models/paper-gltf/result.gltf" preload="auto"></a-asset-item>
+        <a-asset-item id="scissors" src="assets/models/scissors-gltf/result.gltf" preload="auto"></a-asset-item>
+        <a-asset-item id="rock" src="assets/models/rock-gltf/result.gltf" preload="auto"></a-asset-item>
+    </a-assets>
+    
+    <a-marker id="paper" type="pattern" url="assets/patt/pattern-paper.patt" raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;" smooth="true">
+        <a-entity   id="paper-model"
+                    position="0 0 0" 
+                    rotation="0 0 0"
+                    scale="2 2 2"
+                    gltf-model="#paper"
+                    class="clickable"
+                    model-manager
+                    gesture-handler="minScale: 0.5; maxScale: 2"
+                    animation-mixer>
+        </a-entity>
+    </a-marker>
+
+    <a-marker id="scissors" type="pattern" url="assets/patt/pattern-scissors.patt" raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;" smooth="true">
+        <a-entity   id="scissors-model"
+                    position="0 0 0"  
+                    rotation="0 0 0"
+                    scale="2 2 2"
+                    gltf-model="#scissors"
+                    class="clickable"
+                    model-manager
+                    gesture-handler="minScale: 0.5; maxScale: 2"
+                    animation-mixer>
+        </a-entity>
+    </a-marker>
+
+    <a-marker id="rock" type="pattern" url="assets/patt/pattern-rock.patt" raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;" smooth="true">
+        <a-entity   id="rock-model"
+                    position="0 0 0" 
+                    rotation="0 0 0"
+                    scale="2 2 2"
+                    gltf-model="#rock"
+                    class="clickable"
+                    model-manager
+                    gesture-handler="minScale: 0.5; maxScale: 2"
+                    animation-mixer>
+        </a-entity>
+    </a-marker>
+    
+    <a-entity camera></a-entity>
+    
+</a-scene>
+</body>
+</html>
